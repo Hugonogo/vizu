@@ -139,6 +139,7 @@ header{
         width: 90%;
     }
     #value{
+        margin-left: 1%;
         font-size:17px;
     }
 }
