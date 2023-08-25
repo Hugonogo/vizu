@@ -121,26 +121,14 @@ header{
         width: 90%;
         height: 5%;
     }
-    .menu_btn{
-        font-size: small;
-    }
-    #play_btn{
-        height: 80%;
-        width: 90%;
-    }
-    .menu_btn_automatico{
-        font-size: small;
-    }
+  
     #count{
-        font-size:22px;
+        font-size: 22px;
     }
-    #autoBtn{
-        height: 80%;
-        width: 90%;
-    }
+  
     #value{
-        margin-left: 1%;
-        font-size:17px;
+        margin-left: 2%;
+        font-size: 17px;
     }
 }
 
