@@ -131,9 +131,15 @@ header{
     .menu_btn_automatico{
         font-size: small;
     }
+    #count{
+        font-size:22px;
+    }
     #autoBtn{
         height: 80%;
         width: 90%;
+    }
+    #value{
+        font-size:22px;
     }
 }
 
