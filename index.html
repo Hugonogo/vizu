@@ -130,9 +130,14 @@
                 autoplay: autoplaying,
                 controls: 0,
                 rel: 0
-            }
+            },
+             events: {
+            'onReady': onPlayerReady}
         });
+        
     }
+    function onPlayerReady(event) {
+    event.target.setSize('100%', '100%');
 
     function counter(val) {
         if (val <= 0) {
