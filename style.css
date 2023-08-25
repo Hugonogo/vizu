@@ -145,6 +145,13 @@ header{
     height: 100vh; /* Isso garante que o conteúdo seja centralizado verticalmente */
 }
 
+.video-container {
+    position: relative;
+    padding-bottom: 56.25%; /* Proporção 16:9 (dividindo a altura pela largura) */
+    overflow: hidden;
+}
+
+
 .gif {
     margin-bottom: 10px; /* Espaçamento entre o GIF e o botão */
 }
