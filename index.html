@@ -122,7 +122,8 @@
 
     document.addEventListener("DOMContentLoaded", verificarAutomatico);
 
-    var player
+    var player;
+
     function onYouTubeIframeAPIReady() {
         player = new YT.Player('frame_box', {
             videoId: videoid,
@@ -131,13 +132,15 @@
                 controls: 0,
                 rel: 0
             },
-             events: {
-            'onReady': onPlayerReady}
+            events: {
+                'onReady': onPlayerReady
+            }
         });
-        
     }
+
     function onPlayerReady(event) {
-    event.target.setSize('100%', '100%');
+        event.target.setSize('100%', '100%');
+    }
 
     function counter(val) {
         if (val <= 0) {
