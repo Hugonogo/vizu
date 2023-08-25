@@ -77,7 +77,7 @@ header{
 }
 
 .menu_video > * {
-    margin: 0.2%;
+    margin: 20px;
     display: flex;
     flex: 1; /* Adicionado para definir flex-grow, flex-shrink e flex-basis */
     
@@ -120,6 +120,10 @@ header{
     .video_frame{
         width: 90%;
         height: 5%;
+    }
+    .menu_video > *{
+      margin: 0.2%;
+      
     }
   
     #count{
