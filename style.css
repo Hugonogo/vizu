@@ -72,15 +72,23 @@ header {
 }
 .menu_video {
   display: flex;
-  flex-direction: row;
+   flex-direction: row;
+ 
+  align-items: center;
 
   justify-content: center;
 }
 
 .menu_video > * {
   margin: 20px;
+  display: block;
+  
+}
+
+.seg-coluna{ 
+
   display: flex;
-  flex: 1; /* Adicionado para definir flex-grow, flex-shrink e flex-basis */
+  flex-direction: column;
 }
 .video_valor {
   color: green;
@@ -118,8 +126,10 @@ header {
 
 @media (max-width: 768px) {
   .menu_video > * {
-    margin: 0.2%;
-  }
+  margin: 1%;
+
+  
+}
 
   #count {
     font-size: 20px;
