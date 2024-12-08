@@ -87,13 +87,16 @@
       align-items: center;
       justify-content: center;
     }
+    /* Responsividade para o contêiner do vídeo */
     .video-container {
       max-width: 100%;
+      width: 100%;
       margin: 0 auto;
       position: relative;
-      padding-bottom: 56.25%;
-      max-height: 70vh;
+      padding-bottom: 56.25%; /* Proporção 16:9 */
+      height: 0;
       overflow: hidden;
+      background: black;
     }
     .video-container iframe {
       position: absolute;
@@ -193,9 +196,6 @@
           <a class="nav-link" href="/lista_videos">Início</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="/comprar_moedas">Comprar Moedas</a>
-        </li>
-        <li class="nav-item">
           <a class="nav-link" href="./meus_videos">Meus Vídeos</a>
         </li>
       </ul>
@@ -208,7 +208,6 @@
     </div>
     <div class="menu_video">
       <div class="video-iniciar">
-        <h3 id="value">Valor: $<b class="video_valor" id="video_valor"></b></h3>
         <span>
           <button type="button" class="btn btn-success btn-sm" onclick="say()">Iniciar Vídeo</button>
         </span>
@@ -271,49 +270,28 @@
     let count = document.getElementById('count')
     let sec = Number(count.innerHTML)
     if (sec == 45) {
-      player.playVideo()
-      let interval = setInterval(function() {
-        if (sec === -1) {
-          clearInterval(interval)
-        } else {
-          sec--;
-          count.innerHTML = sec;
-        }
-      }, 1000)
+      player.playVideo();
+      let value = document.getElementById('value');
+      value.style.color = 'green';
+      count.style.color = 'green';
+      count.innerHTML = "Pronto!";
     }
   }
-
   function nextVideo() {
-    var requestOptions = {
-      method: 'POST',
-      redirect: 'follow'
-    };
-    fetch("https://visu-zeta.vercel.app/proximovideo", requestOptions)
-      .then(response => response.text())
-      .then(result => {
-        dados = JSON.parse(result);
-        if (dados.video) {
-          window.location = "/visualizar_video?videoid=" + dados.video.id_video +
-            "&preco=" + dados.video.valor +
-            "&auto=" + automatico +
-            "&dataid=" + dados.video._id;
-        } else {
-          alert("Sem videos para assistir.")
-        }
-      })
-      .catch(error => console.log('error', error));
+    var nextVideoId = "r9aQTq6nHCU"; // Coloque o próximo ID de vídeo aqui
+    var nextPreco = 15;
+    window.location.href = '?videoid=' + nextVideoId + '&preco=' + nextPreco + '&auto=true';
   }
 
-  function automatic(tag) {
-    if (tag.style.backgroundColor = 'royalblue') {
-      tag.style.backgroundColor = 'red'
-      tag.innerHTML = "AUTOMÁTICO: ON"
-      automatico = 'true';
+  function automatic(button) {
+    if (autoplaying == 1) {
+      button.innerHTML = "Automático: OFF";
+      autoplaying = 0;
     } else {
-      automatiico = 'false';
-      tag.style.backgroundColor = 'royalblue'
-      tag.innerHTML = "AUTOMÁTICO: OFF"
+      button.innerHTML = "Automático: ON";
+      autoplaying = 1;
     }
+    window.location.href = '?videoid=' + videoid + '&preco=' + preco + '&auto=' + autoplaying;
   }
 </script>
 
