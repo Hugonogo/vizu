@@ -10,178 +10,197 @@
   <script src="https://www.youtube.com/iframe_api"></script>
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
   <style>
-    * {
-      margin: 0;
-      padding: 0;
-      font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande", "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
-    }
-    body {
-      max-width: 100%;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-    }
-    header {
-      max-width: 100%;
-      background-color: whitesmoke;
-      color: white;
-      display: flex;
-      flex-direction: row;
-      justify-content: space-between;
-      align-items: center;
-      padding-top: 10px;
-      padding-bottom: 10px;
-    }
-    #logo {
-      height: 30px;
-    }
-    .header_menu {
-      display: flex;
-      align-items: center;
-      flex-direction: row;
-      margin: 5px;
-    }
-    .header_options {
-      display: flex;
-      flex-direction: row;
-    }
-    .header_options > * {
-      margin: 5px;
-    }
-    .novo_video_btn {
-      background: rgba(0, 0, 0, 0);
-      color: black;
-      border: solid 1px black;
-      font-size: larger;
-      margin-left: 20px;
-      border-radius: 4px;
-      padding: 5px;
-      font-weight: bold;
-    }
-    .novo_video_btn:hover {
-      cursor: pointer;
-      background-color: black;
-      color: white;
-    }
-    .comprar_btn {
-      padding: 8px;
-      background-color: royalblue;
-      color: white;
-      border: none;
-      font-size: larger;
-      margin: 5px;
-      border-radius: 5px;
-    }
-    .total_moedas {
-      font-size: large;
-      font-weight: bold;
-      color: gray;
-    }
-    .titulo_video {
-      margin: 20px;
-    }
-    .menu_video {
-      display: flex;
-      flex-direction: row;
-      align-items: center;
-      justify-content: center;
-    }
-    /* Responsividade para o contêiner do vídeo */
-    .video-container {
-      max-width: 100%;
-      width: 100%;
-      margin: 0 auto;
-      position: relative;
-      padding-bottom: 56.25%; /* Proporção 16:9 */
-      height: 0;
-      overflow: hidden;
-      background: black;
-    }
-    .video-container iframe {
-      position: absolute;
-      width: 100%;
-      height: 100%;
-      top: 0;
-      left: 0;
-    }
+  * {
+    margin: 0;
+    padding: 0;
+    font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande", "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
+  }
+  body {
+    max-width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  header {
+    max-width: 100%;
+    background-color: whitesmoke;
+    color: white;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 10px;
+    padding-bottom: 10px;
+  }
+  #logo {
+    height: 30px;
+  }
+  .header_menu {
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    margin: 5px;
+  }
+  .header_options {
+    display: flex;
+    flex-direction: row;
+  }
+  .header_options > * {
+    margin: 5px;
+  }
+  .novo_video_btn {
+    background: rgba(0, 0, 0, 0);
+    color: black;
+    border: solid 1px black;
+    font-size: larger;
+    margin-left: 20px;
+    border-radius: 4px;
+    padding: 5px;
+    font-weight: bold;
+  }
+  .novo_video_btn:hover {
+    cursor: pointer;
+    background-color: black;
+    color: white;
+  }
+  .comprar_btn {
+    padding: 8px;
+    background-color: royalblue;
+    color: white;
+    border: none;
+    font-size: larger;
+    margin: 5px;
+    border-radius: 5px;
+  }
+  .total_moedas {
+    font-size: large;
+    font-weight: bold;
+    color: gray;
+  }
+  .titulo_video {
+    margin: 20px;
+  }
+  .menu_video {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+  }
+  /* Responsividade para o contêiner do vídeo */
+  .video-container {
+    max-width: 100%;
+    width: 100%;
+    margin: 0 auto;
+    position: relative;
+    padding-bottom: 56.25%; /* Proporção 16:9 */
+    height: 0;
+    overflow: hidden;
+    background: black;
+  }
+  .video-container iframe {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+  }
+  .menu_video > * {
+    margin: 2%;
+    display: block;
+  }
+  .seg-coluna {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    align-content: center;
+  }
+  .video_valor {
+    color: green;
+  }
+  .menu_btn {
+    padding: 5px;
+    background-color: rgb(241, 110, 22);
+    color: white;
+    font-size: larger;
+    border: none;
+    margin: 5px;
+    font-weight: bold;
+    box-shadow: 0px 0px 10px gray;
+    border-radius: 20px;
+    padding: 8px;
+    cursor: pointer;
+  }
+  .menu_btn_automatico {
+    padding: 5px;
+    background-color: royalblue;
+    color: white;
+    font-size: larger;
+    border: none;
+    margin: 5px;
+    font-weight: bold;
+    box-shadow: 0px 0px 10px gray;
+    border-radius: 20px;
+    padding: 8px;
+    cursor: pointer;
+  }
+  #play_btn {
+    background-color: rgb(44, 212, 44);
+  }
+  
+  @media (max-width: 768px) {
     .menu_video > * {
-      margin: 2%;
-      display: block;
+      margin: 1%;
     }
-    .seg-coluna {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      align-content: center;
+    #count {
+      font-size: 20px;
     }
-    .video_valor {
-      color: green;
+    #seg {
+      font-size: 20px;
     }
-    .menu_btn {
-      padding: 5px;
-      background-color: rgb(241, 110, 22);
-      color: white;
-      font-size: larger;
-      border: none;
-      margin: 5px;
-      font-weight: bold;
-      box-shadow: 0px 0px 10px gray;
-      border-radius: 20px;
-      padding: 8px;
-      cursor: pointer;
+    #value {
+      margin-left: 2%;
+      font-size: 17px;
     }
-    .menu_btn_automatico {
-      padding: 5px;
-      background-color: royalblue;
-      color: white;
-      font-size: larger;
-      border: none;
-      margin: 5px;
-      font-weight: bold;
-      box-shadow: 0px 0px 10px gray;
-      border-radius: 20px;
-      padding: 8px;
-      cursor: pointer;
+  }
+  
+  @media (max-width: 487px) {
+    .menu_video > * {
+      margin: 0.1%;
     }
-    #play_btn {
-      background-color: rgb(44, 212, 44);
+    #count {
+      font-size: 13px;
     }
-    @media (max-width: 768px) {
-      .menu_video > * {
-        margin: 1%;
-      }
-      #count {
-        font-size: 20px;
-      }
-      #seg {
-        font-size: 20px;
-      }
-      #value {
-        margin-left: 2%;
-        font-size: 17px;
-      }
+    #seg {
+      font-size: 12px;
     }
-    @media (max-width: 487px) {
-      .menu_video > * {
-        margin: 0.1%;
-      }
-      #count {
-        font-size: 13px;
-      }
-      #seg {
-        font-size: 12px;
-      }
-      #value {
-        margin-left: 1%;
-        font-size: 12px;
-      }
+    #value {
+      margin-left: 1%;
+      font-size: 12px;
     }
-    .gif {
-      margin-bottom: 10px;
+  }
+  
+  .gif {
+    margin-bottom: 10px;
+  }
+
+  /* Ajustar o vídeo em tela cheia */
+  .video-container iframe {
+    max-height: 90vh; /* Limitar a altura do vídeo a 90% da altura da tela */
+    max-width: 100%; /* Impedir que o vídeo ultrapasse a largura da tela */
+  }
+
+  /* Se estiver em modo de tela cheia */
+  @media screen and (min-width: 768px) {
+    .video-container iframe {
+      max-width: 100%;
+      max-height: 90vh;
     }
-  </style>
+  }
+
+</style>
+
 </head>
 
 <body>
