@@ -9,19 +9,177 @@
   <link rel="icon" href="icone.png">
   <script src="https://www.youtube.com/iframe_api"></script>
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande", "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
+    }
+    body {
+      max-width: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    }
+    header {
+      max-width: 100%;
+      background-color: whitesmoke;
+      color: white;
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      align-items: center;
+      padding-top: 10px;
+      padding-bottom: 10px;
+    }
+    #logo {
+      height: 30px;
+    }
+    .header_menu {
+      display: flex;
+      align-items: center;
+      flex-direction: row;
+      margin: 5px;
+    }
+    .header_options {
+      display: flex;
+      flex-direction: row;
+    }
+    .header_options > * {
+      margin: 5px;
+    }
+    .novo_video_btn {
+      background: rgba(0, 0, 0, 0);
+      color: black;
+      border: solid 1px black;
+      font-size: larger;
+      margin-left: 20px;
+      border-radius: 4px;
+      padding: 5px;
+      font-weight: bold;
+    }
+    .novo_video_btn:hover {
+      cursor: pointer;
+      background-color: black;
+      color: white;
+    }
+    .comprar_btn {
+      padding: 8px;
+      background-color: royalblue;
+      color: white;
+      border: none;
+      font-size: larger;
+      margin: 5px;
+      border-radius: 5px;
+    }
+    .total_moedas {
+      font-size: large;
+      font-weight: bold;
+      color: gray;
+    }
+    .titulo_video {
+      margin: 20px;
+    }
+    .menu_video {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      justify-content: center;
+    }
+    .video-container {
+      max-width: 100%;
+      margin: 0 auto;
+      position: relative;
+      padding-bottom: 56.25%;
+      max-height: 70vh;
+      overflow: hidden;
+    }
+    .video-container iframe {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      top: 0;
+      left: 0;
+    }
+    .menu_video > * {
+      margin: 2%;
+      display: block;
+    }
+    .seg-coluna {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      align-content: center;
+    }
+    .video_valor {
+      color: green;
+    }
+    .menu_btn {
+      padding: 5px;
+      background-color: rgb(241, 110, 22);
+      color: white;
+      font-size: larger;
+      border: none;
+      margin: 5px;
+      font-weight: bold;
+      box-shadow: 0px 0px 10px gray;
+      border-radius: 20px;
+      padding: 8px;
+      cursor: pointer;
+    }
+    .menu_btn_automatico {
+      padding: 5px;
+      background-color: royalblue;
+      color: white;
+      font-size: larger;
+      border: none;
+      margin: 5px;
+      font-weight: bold;
+      box-shadow: 0px 0px 10px gray;
+      border-radius: 20px;
+      padding: 8px;
+      cursor: pointer;
+    }
+    #play_btn {
+      background-color: rgb(44, 212, 44);
+    }
+    @media (max-width: 768px) {
+      .menu_video > * {
+        margin: 1%;
+      }
+      #count {
+        font-size: 20px;
+      }
+      #seg {
+        font-size: 20px;
+      }
+      #value {
+        margin-left: 2%;
+        font-size: 17px;
+      }
+    }
+    @media (max-width: 487px) {
+      .menu_video > * {
+        margin: 0.1%;
+      }
+      #count {
+        font-size: 13px;
+      }
+      #seg {
+        font-size: 12px;
+      }
+      #value {
+        margin-left: 1%;
+        font-size: 12px;
+      }
+    }
+    .gif {
+      margin-bottom: 10px;
+    }
+  </style>
 </head>
-<style>
-  #nav {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: space-between;
-  }
-
-  nav {
-    width: 100%;
-  }
-</style>
 
 <body>
   <nav class="navbar navbar-expand-lg navbar-light bg-light">
@@ -31,11 +189,6 @@
     </button>
     <div class="collapse navbar-collapse" id="navbarNav">
       <ul class="navbar-nav ml-auto">
-        <li class="nav-item">
-          <a class="nav-link">
-            <span class="total_moedas">Moedas disponíveis: $<b id=my_coins></b></span>
-          </a>
-        </li>
         <li class="nav-item">
           <a class="nav-link" href="/lista_videos">Início</a>
         </li>
@@ -50,55 +203,39 @@
   </nav>
 
   <div class="col-md-4 mb-4" style="max-width: 100%;">
-    <div class="video-container" id="frame_box"> <iframe id="iframe_box" frameborder="0" allowfullscreen="1" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" title="Eminem - Without Me (Official Music Video)" width="640" height="360" src="https://www.youtube.com/embed/YVkUvmDQ3HY?autoplay=0&amp;controls=0&amp;rel=0&amp;enablejsapi=1&amp;origin=https%3A%2F%2Fvisu-frontend.vercel.app&amp;widgetid=1"></iframe></div>
+    <div class="video-container" id="frame_box">
+      <iframe id="iframe_box" frameborder="0" allowfullscreen="1" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" title="Eminem - Without Me (Official Music Video)" width="640" height="360" src="https://www.youtube.com/embed/YVkUvmDQ3HY?autoplay=0&amp;controls=0&amp;rel=0&amp;enablejsapi=1&amp;origin=https%3A%2F%2Fvisu-frontend.vercel.app&amp;widgetid=1"></iframe>
+    </div>
     <div class="menu_video">
       <div class="video-iniciar">
         <h3 id="value">Valor: $<b class="video_valor" id="video_valor"></b></h3>
         <span>
-        <button type="button" class="btn btn-success btn-sm" onclick="say()">Iniciar Vídeo</button>
-
-      </span>
+          <button type="button" class="btn btn-success btn-sm" onclick="say()">Iniciar Vídeo</button>
+        </span>
       </div>
-      
+
       <div class="seg-coluna">
         <h3>
           <h3 id="count">45</h3>
-          <p id='seg'>  Segundos...</p>
+          <p id='seg'>Segundos...</p>
         </h3>
-       
-      </div>
-       <span>
-        <button type="button" class="btn btn-warning btn-sm" onclick="nextVideo()">Próximo &gt;</button>
 
+      </div>
+      <span>
+        <button type="button" class="btn btn-warning btn-sm" onclick="nextVideo()">Próximo &gt;</button>
       </span>
       <span>
         <button type="button" class="btn btn-primary btn-sm" onclick="automatic(this)">Automático: OFF</button>
-        
       </span>
-
-      
-
     </div>
   </div>
 </body>
+
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 <script>
-  function refreshCoins() {
-    fetch(`https://visu-zeta.vercel.app/${localStorage.getItem('id')}/moedas`, {
-        method: 'POST',
-        headers: {
-          'Content-type': 'application/json'
-        }
-      }).then(res => res.json())
-      .then(function(res) {
-        let coin_area = document.getElementById('my_coins')
-        coin_area.innerHTML = res.msg
-      })
-  }
-  refreshCoins()
   var urlParams = new URLSearchParams(window.location.search);
   var videoid = urlParams.get('videoid');
   var dataid = urlParams.get('dataid');
@@ -110,17 +247,6 @@
     autoplaying = 1;
   }
 
-  function verificarAutomatico() {
-    if (automatico == 'true') {
-      document.getElementById('autoBtn').style.backgroundColor = 'red'
-      document.getElementById('autoBtn').innerHTML = 'AUTOMÁTICO: ON'
-      sayautomatico();
-    } else {
-      document.getElementById('autoBtn').style.backgroundColor = 'royalblue'
-      document.getElementById('autoBtn').innerHTML = 'AUTOMÁTICO: OFF'
-    }
-  }
-  document.addEventListener("DOMContentLoaded", verificarAutomatico);
   var player;
 
   function onYouTubeIframeAPIReady() {
@@ -141,33 +267,6 @@
     event.target.setSize('100%', '100%');
   }
 
-  function counter(val) {
-    if (val <= 0) {
-      let obj = {
-        id_usuario: localStorage.getItem('id'),
-        moedasdrop: 1,
-        id_video: dataid
-      }
-      fetch('https://visu-zeta.vercel.app/droparmoedas', {
-        method: 'POST',
-        headers: {
-          "Content-type": 'application/json'
-        },
-        body: JSON.stringify(obj)
-      }).then(res => {
-        if (automatico == 'true') {
-          nextVideo()
-        } else {
-          alert("Parabens, as moedas ja foram depositadas")
-        }
-        refreshCoins()
-      })
-      count.innerHTML = 0
-    } else {
-      count.innerHTML = val
-    }
-  }
-
   function say() {
     let count = document.getElementById('count')
     let sec = Number(count.innerHTML)
@@ -177,24 +276,12 @@
         if (sec === -1) {
           clearInterval(interval)
         } else {
-          counter(sec--)
+          sec--;
+          count.innerHTML = sec;
         }
       }, 1000)
     }
   }
-
-  function sayautomatico() {
-    let count = document.getElementById('count');
-    let sec = 45;
-    let interval = setInterval(function() {
-      if (sec === -1) {
-        clearInterval(interval);
-      } else {
-        counter(sec--);
-      }
-    }, 1000);
-  }
-  let my_coins = document.getElementById('my_coins')
 
   function nextVideo() {
     var requestOptions = {
