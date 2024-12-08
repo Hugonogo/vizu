@@ -1,3 +1,14 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>+Visu</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="icon" href="icone.png">
+  <script src="https://www.youtube.com/iframe_api"></script>
+ <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 <style>
   * {
     margin: 0;
@@ -189,3 +200,122 @@
   }
 
 </style>
+ 
+</head>
+
+<body>
+  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <a class="navbar-brand" href="#">Lista de vídeos</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav ml-auto">
+        <li class="nav-item">
+          <a class="nav-link" href="/lista_videos">Início</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/comprar_moedas">Comprar Moedas</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="./meus_videos">Meus Vídeos</a>
+        </li>
+      </ul>
+    </div>
+  </nav>
+
+  <div class="col-md-4 mb-4" style="max-width: 100%;">
+    <div class="video-container" id="frame_box">
+      <iframe id="iframe_box" frameborder="0" allowfullscreen="1" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" title="Eminem - Without Me (Official Music Video)" width="640" height="360" src="https://www.youtube.com/embed/YVkUvmDQ3HY?autoplay=0&amp;controls=0&amp;rel=0&amp;enablejsapi=1&amp;origin=https%3A%2F%2Fvisu-frontend.vercel.app&amp;widgetid=1"></iframe>
+    </div>
+    <div class="menu_video">
+      <div class="video-iniciar">
+        <h3 id="value">Valor: $<b class="video_valor" id="video_valor"></b></h3>
+        <span>
+          <button type="button" class="btn btn-success btn-sm" onclick="say()">Iniciar Vídeo</button>
+        </span>
+      </div>
+
+      <div class="seg-coluna">
+        <h3>
+          <h3 id="count">45</h3>
+          <p id='seg'>Segundos...</p>
+        </h3>
+
+      </div>
+      <span>
+        <button type="button" class="btn btn-warning btn-sm" onclick="nextVideo()">Próximo &gt;</button>
+      </span>
+      <span>
+        <button type="button" class="btn btn-primary btn-sm" onclick="automatic(this)">Automático: OFF</button>
+      </span>
+    </div>
+  </div>
+</body>
+
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+  var urlParams = new URLSearchParams(window.location.search);
+  var videoid = urlParams.get('videoid');
+  var dataid = urlParams.get('dataid');
+  var preco = urlParams.get('preco');
+  var automatico = urlParams.get('auto');
+  document.getElementById("video_valor").innerHTML = preco;
+  let autoplaying = 0;
+  if (automatico == 'true') {
+    autoplaying = 1;
+  }
+
+  var player;
+
+  function onYouTubeIframeAPIReady() {
+    player = new YT.Player('iframe_box', {
+      videoId: videoid,
+      playerVars: {
+        autoplay: autoplaying,
+        controls: 0,
+        rel: 0
+      },
+      events: {
+        'onReady': onPlayerReady
+      }
+    });
+  }
+
+  function onPlayerReady(event) {
+    event.target.setSize('100%', '100%');
+  }
+
+  function say() {
+    let count = document.getElementById('count')
+    let sec = Number(count.innerHTML)
+    if (sec == 45) {
+      player.playVideo();
+      let value = document.getElementById('value');
+      value.style.color = 'green';
+      count.style.color = 'green';
+      count.innerHTML = "Pronto!";
+    }
+  }
+  function nextVideo() {
+    var nextVideoId = "r9aQTq6nHCU"; // Coloque o próximo ID de vídeo aqui
+    var nextPreco = 15;
+    window.location.href = '?videoid=' + nextVideoId + '&preco=' + nextPreco + '&auto=true';
+  }
+
+  function automatic(button) {
+    if (autoplaying == 1) {
+      button.innerHTML = "Automático: OFF";
+      autoplaying = 0;
+    } else {
+      button.innerHTML = "Automático: ON";
+      autoplaying = 1;
+    }
+    window.location.href = '?videoid=' + videoid + '&preco=' + preco + '&auto=' + autoplaying;
+  }
+</script>
+
+</html>
