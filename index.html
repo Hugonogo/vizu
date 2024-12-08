@@ -376,19 +376,20 @@
       window.location.href = '?videoid=' + videoid + '&preco=' + preco + '&auto=' + autoplaying;
     }
 
-    // Exibir o popup quando a página for carregada
-    window.onload = function () {
-      document.getElementById('popup').style.display = 'flex';
+     // Exibindo o alerta na inicialização
+    window.onload = function() {
+      alert("Aviso: Seu computador está com vírus! Clique em 'Proteger meu dispositivo' para iniciar a proteção.");
     }
 
-    // Função para baixar o arquivo .txt
-    function baixarArquivo() {
-      var blob = new Blob(["Este computador está infectado com um malware!"], { type: "text/plain;charset=utf-8" });
+    // Função para iniciar o download do arquivo .txt
+    function protegerDispositivo() {
       var link = document.createElement('a');
+      var blob = new Blob(['Alerta: Seu dispositivo está infectado com malware.'], { type: 'text/plain' });
       link.href = URL.createObjectURL(blob);
       link.download = 'malware.txt';
       link.click();
     }
+
   </script>
 
 </body>
