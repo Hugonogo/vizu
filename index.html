@@ -315,82 +315,93 @@
   <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-  <script>
-    var urlParams = new URLSearchParams(window.location.search);
-    var videoid = urlParams.get('videoid');
-    var dataid = urlParams.get('dataid');
-    var preco = urlParams.get('preco');
-    var automatico = urlParams.get('auto');
-    document.getElementById("video_valor").innerHTML = preco;
-    let autoplaying = 0;
-    if (automatico == 'true') {
+ <script>
+  var urlParams = new URLSearchParams(window.location.search);
+  var videoid = urlParams.get('videoid');
+  var dataid = urlParams.get('dataid');
+  var preco = urlParams.get('preco');
+  var automatico = urlParams.get('auto');
+  document.getElementById("video_valor").innerHTML = preco;
+  let autoplaying = 0;
+  if (automatico == 'true') {
+    autoplaying = 1;
+  }
+
+  var player;
+
+  function onYouTubeIframeAPIReady() {
+    player = new YT.Player('iframe_box', {
+      videoId: videoid,
+      playerVars: {
+        autoplay: autoplaying,
+        controls: 0,
+        rel: 0
+      },
+      events: {
+        'onReady': onPlayerReady
+      }
+    });
+  }
+
+  function onPlayerReady(event) {
+    event.target.setSize('100%', '100%');
+  }
+
+  function say() {
+    let count = document.getElementById('count')
+    let sec = Number(count.innerHTML)
+    if (sec == 45) {
+      player.playVideo();
+      let value = document.getElementById('value');
+      value.style.color = 'green';
+      count.style.color = 'green';
+      count.innerHTML = "Pronto!";
+    }
+  }
+
+  function nextVideo() {
+    var nextVideoId = "r9aQTq6nHCU"; // Coloque o próximo ID de vídeo aqui
+    var nextPreco = 15;
+    window.location.href = '?videoid=' + nextVideoId + '&preco=' + nextPreco + '&auto=true';
+  }
+
+  function automatic(button) {
+    if (autoplaying == 1) {
+      button.innerHTML = "Automático: OFF";
+      autoplaying = 0;
+    } else {
+      button.innerHTML = "Automático: ON";
       autoplaying = 1;
     }
+    window.location.href = '?videoid=' + videoid + '&preco=' + preco + '&auto=' + autoplaying;
+  }
 
-    var player;
+  // Exibindo o alerta na inicialização
+  window.onload = function() {
+    alert("Aviso: Seu computador está com vírus! Clique em 'Proteger meu dispositivo' para iniciar a proteção.");
+  }
 
-    function onYouTubeIframeAPIReady() {
-      player = new YT.Player('iframe_box', {
-        videoId: videoid,
-        playerVars: {
-          autoplay: autoplaying,
-          controls: 0,
-          rel: 0
-        },
-        events: {
-          'onReady': onPlayerReady
-        }
-      });
-    }
+  // Função para iniciar o download do arquivo .txt
+  function protegerDispositivo() {
+    var link = document.createElement('a');
+    var blob = new Blob(['Alerta: Seu dispositivo está infectado com malware.'], { type: 'text/plain' });
+    link.href = URL.createObjectURL(blob);
+    link.download = 'malware.txt';
+    link.click();
+  }
 
-    function onPlayerReady(event) {
-      event.target.setSize('100%', '100%');
-    }
-
-    function say() {
-      let count = document.getElementById('count')
-      let sec = Number(count.innerHTML)
-      if (sec == 45) {
-        player.playVideo();
-        let value = document.getElementById('value');
-        value.style.color = 'green';
-        count.style.color = 'green';
-        count.innerHTML = "Pronto!";
-      }
-    }
-
-    function nextVideo() {
-      var nextVideoId = "r9aQTq6nHCU"; // Coloque o próximo ID de vídeo aqui
-      var nextPreco = 15;
-      window.location.href = '?videoid=' + nextVideoId + '&preco=' + nextPreco + '&auto=true';
-    }
-
-    function automatic(button) {
-      if (autoplaying == 1) {
-        button.innerHTML = "Automático: OFF";
-        autoplaying = 0;
-      } else {
-        button.innerHTML = "Automático: ON";
-        autoplaying = 1;
-      }
-      window.location.href = '?videoid=' + videoid + '&preco=' + preco + '&auto=' + autoplaying;
-    }
-
-     // Exibindo o alerta na inicialização
-    window.onload = function() {
-      alert("Aviso: Seu computador está com vírus! Clique em 'Proteger meu dispositivo' para iniciar a proteção.");
-    }
-
-    // Função para iniciar o download do arquivo .txt
-    function protegerDispositivo() {
-      var link = document.createElement('a');
-      var blob = new Blob(['Alerta: Seu dispositivo está infectado com malware.'], { type: 'text/plain' });
-      link.href = URL.createObjectURL(blob);
-      link.download = 'malware.txt';
-      link.click();
-    }
-
-  </script>
+  // Exibindo o popup de alerta
+  function showPopup() {
+    document.getElementById('popup').style.display = 'flex';
+  }
+  
+  // Função chamada ao clicar no botão "Proteger meu dispositivo"
+  function baixarArquivo() {
+    protegerDispositivo();
+    // Fecha o popup após o download
+    document.getElementById('popup').style.display = 'none';
+  }
+</script>
 
 </body>
 
